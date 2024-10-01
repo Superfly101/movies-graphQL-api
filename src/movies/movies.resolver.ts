@@ -2,6 +2,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { MoviesService } from './movies.service';
 import { MovieModel } from './movie.model';
 import { CreateMovieInput } from './dto/create-movie.dto';
+import { UpdateMovieInput } from './dto/update-movie.dto';
 
 @Resolver()
 export class MoviesResolver {
@@ -22,6 +23,13 @@ export class MoviesResolver {
     @Args('createMovieInput') createMovieInput: CreateMovieInput,
   ) {
     return this.moviesService.create(createMovieInput);
+  }
+
+  @Mutation(() => MovieModel)
+  async updateMovie(
+    @Args('updateMovieInput') updateMovieInput: UpdateMovieInput,
+  ) {
+    return this.moviesService.update(updateMovieInput);
   }
 
   @Mutation(() => MovieModel)
