@@ -16,8 +16,13 @@ export class MoviesService {
     return this.moviesRepository.find();
   }
 
-  findOne(id: number): Promise<Movie> {
-    return this.moviesRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Movie> {
+    const movie = await this.moviesRepository.findOneBy({ id });
+
+    if (!movie) {
+      throw new Error('Movie not found');
+    }
+    return movie;
   }
 
   async create(createMovieInput: CreateMovieInput): Promise<Movie> {
