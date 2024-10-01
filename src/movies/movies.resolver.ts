@@ -24,8 +24,8 @@ export class MoviesResolver {
     return this.moviesService.create(createMovieInput);
   }
 
-  //   @Mutation(() => MovieModel)
-  //   async removeMovie(@Args('id', { type: () => Int }) id: number) {
-  //     return this.moviesService.remove(id);
-  //   }
+  @Mutation(() => MovieModel)
+  async removeMovie(@Args('id', { type: () => Int }) id: number) {
+    return this.moviesService.remove(id);
+  }
 }
